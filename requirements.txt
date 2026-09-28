@@ -1,0 +1,21 @@
+# CORE DATA SCIENCE & MACHINE LEARNING
+numpy==1.26.4
+pandas==2.2.3
+scikit-learn==1.5.2
+
+# DATA VISUALIZATION
+matplotlib==3.9.2
+seaborn==0.13.2
+
+# NLP & HUGGINGFACE DATASETS
+nltk==3.9.1
+datasets==3.0.1
+
+# BACKEND & INTERACTIVE FRONTEND APIS
+fastapi==0.115.0
+uvicorn==0.30.6
+streamlit==1.39.0
+
+# DEVELOPMENT, NOTEBOOKS, & TESTING
+pytest==8.3.3
+jupyter==1.1.1
