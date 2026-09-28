@@ -29,6 +29,8 @@
 
 > *Can we build a reproducible data pipeline that automatically classifies emotions in Arabic social-media text, and can we analyze how emotional patterns differ across emotion categories, identifying which emotions are reliably detectable and which remain ambiguous?*
 
+For the full operational decomposition, theoretical foundations, and ambiguity hypotheses, see the complete [Methodology & Research Question Specification](docs/methodology/methodology.md).
+
 ---
 
 ## 📊 Dataset Description
@@ -45,7 +47,7 @@
 | **Balance**     | Perfectly balanced (1,000 samples per class)         |
 | **License**     | Academic / research use (no explicit open-source license on HuggingFace) |
 
-> **Note:** The raw dataset is **not** committed to the repository. It is downloaded programmatically via the ingestion script.
+> **Note:** The raw dataset is **not** committed to the repository. It is downloaded programmatically via the ingestion script. For candidate evaluations, see [Dataset Evaluation Report](docs/methodology/dataset_evaluation.md).
 
 ### Supplementary Resource — ArSEL Lexicon
 
@@ -64,7 +66,7 @@
 
 The project follows a rigorous, gate-driven data mining methodology:
 
-1. **Problem Definition** — Formalize the research question and define measurable sub-questions
+1. **Problem Definition** — Formalize the research question and define measurable sub-questions ([`methodology.md`](docs/methodology/methodology.md))
 2. **Data Acquisition** — Automated download from HuggingFace via reproducible ingestion script
 3. **Data Validation** — Validate raw data against a formal data contract (completeness, validity, uniqueness, format)
 4. **Data Quality Assessment** — Produce a comprehensive quality report covering 10 dimensions
