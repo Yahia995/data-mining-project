@@ -35,6 +35,19 @@ For the full operational decomposition, theoretical foundations, and ambiguity h
 
 ## 📊 Dataset Description
 
+### Candidate Evaluation & Dataset Selection
+
+Before constructing the pipeline, candidate corpora were formally evaluated across seven feasibility dimensions (dialectal relevance, class balance, taxonomy alignment, programmatic accessibility, annotation rigor, ML feasibility, and licensing) documented in the [Dataset Evaluation & Selection Report](docs/methodology/dataset_evaluation.md):
+
+| Candidate Dataset | Samples | Dialect | Taxonomy | Access | Decision / Role |
+|---|:---:|---|---|---|---|
+| **Dz-Emotion** | 6,000 | Algerian Darija | 6 Ekman (balanced) | HuggingFace Hub | ✅ **Confirmed Primary** (Score: 94.5/100) |
+| **ArSEL Lexicon** | 32,000+ | Modern Standard & Dialectal | 8 Plutchik emotions | GitHub | ✅ **Confirmed Supplementary** (Feature Engineering) |
+| **SemEval-2018 Task 1 E-c** | 4,381 | MSA & mixed regional | 11 emotions (multi-label) | CodaLab / HF | ✅ **Confirmed Secondary** (Cross-dialect benchmark) |
+| **AETD** | 10,065 | Egyptian Arabic | 7 emotions + None | GitHub / Kaggle | ❌ **Rejected** (Severe class skew & uncurated access) |
+
+> For the comprehensive evaluation framework, multi-criteria decision matrix, and formal data contract schemas, see the complete [Dataset Evaluation & Selection Report](docs/methodology/dataset_evaluation.md).
+
 ### Primary Dataset — Dz-Emotion
 
 | Property       | Detail                                              |
@@ -47,18 +60,19 @@ For the full operational decomposition, theoretical foundations, and ambiguity h
 | **Balance**     | Perfectly balanced (1,000 samples per class)         |
 | **License**     | Academic / research use (no explicit open-source license on HuggingFace) |
 
-> **Note:** The raw dataset is **not** committed to the repository. It is downloaded programmatically via the ingestion script. For candidate evaluations, see [Dataset Evaluation Report](docs/methodology/dataset_evaluation.md).
+> **Note:** The raw dataset is **not** committed to the repository. It is downloaded programmatically via the ingestion script.
 
 ### Supplementary Resource — ArSEL Lexicon
 
 - **Source:** [GitHub — Husseinjd/ArSEL](https://github.com/Husseinjd/ArSEL)
 - **Description:** 32,000+ Arabic lemmas scored on 8 Plutchik emotions (anger, anticipation, disgust, fear, joy, sadness, surprise, trust)
-- **Usage:** Lexicon-based emotion feature engineering
+- **Usage:** Lexicon-based emotion feature engineering (mitigating dialectal vocabulary sparsity through lexical emotion density scores)
 
-### Optional Evaluation — SemEval-2018 Task 1 (E-c Arabic)
+### Secondary Evaluation Dataset — SemEval-2018 Task 1 (E-c Arabic)
 
-- **Source:** CodaLab / HuggingFace
-- **Usage:** Cross-dataset validation (optional, P3)
+- **Source:** [CodaLab / HuggingFace](https://competitions.codalab.org/competitions/17751)
+- **Description:** 4,381 Arabic tweets annotated across 11 emotions (Mohammad et al.)
+- **Usage:** Cross-dataset and cross-dialect validation (benchmarking generalization from Algerian Darija to pan-Arabic / MSA text on intersecting Ekman categories)
 
 ---
 
@@ -67,7 +81,7 @@ For the full operational decomposition, theoretical foundations, and ambiguity h
 The project follows a rigorous, gate-driven data mining methodology:
 
 1. **Problem Definition** — Formalize the research question and define measurable sub-questions ([`methodology.md`](docs/methodology/methodology.md))
-2. **Data Acquisition** — Automated download from HuggingFace via reproducible ingestion script
+2. **Data Acquisition & Selection** — Formally evaluate candidate datasets ([`dataset_evaluation.md`](docs/methodology/dataset_evaluation.md)) and automate download from HuggingFace via reproducible ingestion script
 3. **Data Validation** — Validate raw data against a formal data contract (completeness, validity, uniqueness, format)
 4. **Data Quality Assessment** — Produce a comprehensive quality report covering 10 dimensions
 5. **Preprocessing** — Arabic-specific text normalization (diacritics removal, tatweel, character variant normalization, stopword removal)
@@ -273,7 +287,9 @@ data-mining-project/
 │
 ├── docs/                        # Documentation
 │   ├── architecture/            # Architecture diagrams & decisions
-│   ├── methodology/             # Data mining methodology write-up
+│   ├── methodology/             # Methodology & evaluation specifications
+│   │   ├── methodology.md       # Research question & data mining methodology
+│   │   └── dataset_evaluation.md # Formal candidate dataset evaluation & selection
 │   ├── experiments/             # Experiment log (CSV + notes)
 │   └── reports/                 # Data quality report, gate reviews
 │
