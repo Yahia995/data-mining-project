@@ -192,6 +192,16 @@ The Dz-Emotion dataset has been rigorously evaluated across 10 data quality dime
 4. **No data leakage** — train/validation/test partitions are strictly separated with no text overlap.
 5. **Data contract fully compliant** — all validation rules from [data_contract.md](../methodology/data_contract.md) are enforced in `src/validation/contract.py`.
 
+### 8.1 Sign-off
+By signing below, the team members confirm they have reviewed the Data Quality Report and agree with the GO decision to proceed.
+- [x] **Mohamed Bouchoucha** (Data Engineer / Analyst) - 2026-10-03
+- [x] **Yahia Achouri** (Data Scientist) - 2026-10-03
+
+### 8.2 Next Steps
+1. Push the final validated `data/processed/dz_emotion_processed.csv` data to the model training pipeline.
+2. Begin Feature Engineering phase (TF-IDF, word embeddings).
+3. Start baseline model training (e.g., Logistic Regression, SVM, or Transformer).
+
 The dataset is ready to proceed to the next pipeline stage: **Feature Engineering & Model Training**.
 
 ---
