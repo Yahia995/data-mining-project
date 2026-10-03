@@ -26,6 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+      - name: Test Data Ingestion
+        run: |
+          python -m src.ingestion.download
+          ls -la data/raw/dz_emotion_raw.csv
+
       - name: Run tests
         run: |
           pytest tests/ -v
