@@ -48,5 +48,7 @@ jobs:
           test -f data/processed/dz_emotion_processed.csv
 
       - name: Run Test Suite
+        env:
+          PYTHONPATH: .
         run: |
-          pytest tests/ -v
+          python -m pytest tests/ -v
