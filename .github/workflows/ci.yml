@@ -1,14 +1,14 @@
-name: CI
+name: Continuous Integration
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master, "feature/**", "fix/**" ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
-  test:
-    name: Run Tests
+  test-and-validate:
+    name: Build, Run Pipeline & Test
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +31,18 @@ jobs:
           python -m src.ingestion.download
           ls -la data/raw/dz_emotion_raw.csv
 
-      - name: Run tests
+      - name: Run End-to-End Data Pipeline
+        run: |
+          python run_pipeline.py
+          ls -la data/processed/
+
+      - name: Verify Split Files Exist
+        run: |
+          test -f data/processed/train.csv
+          test -f data/processed/val.csv
+          test -f data/processed/test.csv
+          test -f data/processed/dz_emotion_processed.csv
+
+      - name: Run Test Suite
         run: |
           pytest tests/ -v
