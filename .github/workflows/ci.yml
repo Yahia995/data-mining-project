@@ -31,6 +31,10 @@ jobs:
           python -m src.ingestion.download
           ls -la data/raw/dz_emotion_raw.csv
 
+      - name: Run Data Validation Checks
+        run: |
+          python -m src.validation.validate --csv-path data/raw/dz_emotion_raw.csv
+
       - name: Run End-to-End Data Pipeline
         run: |
           python run_pipeline.py
